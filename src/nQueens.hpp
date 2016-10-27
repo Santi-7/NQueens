@@ -2,8 +2,7 @@
 ** nQueens.hpp
 ** Header class for a N Queens solver using Las Vegas algorithm.
 **
-** Author: Miguel Jorge Galindo Ramos, NIA: 679954
-**         Santiago Gil Begué, NIA: 683482
+** Author: Santiago Gil Begué, NIA: 683482
 ** -------------------------------------------------------------------------*/
 
 #ifndef nQUEENS_NQUEENS_HPP
@@ -21,7 +20,32 @@ public:
      * @param n size of the N Queens board.
      * @return a N Queens board of n x n size.
      */
-    NQueens(const unsigned int n);
+    NQueens(const int n);
+
+    /**
+     * Tries to solve the N Queens board by Las Vegas algorithm,
+     * placing the first k queens randomly, and then
+     * doing a backtracking. For this, k must be less or equals
+     * than n (size of the board). Returns true if a solution
+     * is found, false if not.
+     *
+     * @param k number of the first queens to place randomly.
+     * @return true if a solution is found, false if not.
+     */
+    bool PlaceQueensLasVegas(const int k);
+
+    /**
+     * Returns the board.
+     *
+     * @return the board.
+     */
+    std::vector<int> GetBoard() const;
+
+private:
+
+    /* Array that stores the board result.
+    /* mBoard[i]=j; means queen at i-th row is placed at j-th column. */
+    std::vector<int> mBoard;
 
     /**
      * Queens before the [row]-th row are correctly placed. Returns true
@@ -31,26 +55,20 @@ public:
      *
      * @param row from which queens are not placed.
      * @return true if exists a solution with any conmbination of the queens
-     * at the still no placed rows (from [row]-th row to the last one),
+     *         at the still no placed rows (from [row]-th row to the last one),
      */
-    bool PlaceQueensBacktracking(const unsigned int row) const;
-
-private:
-
-    /* Array that stores the board result.
-    /* board[i]=j; means queen at i-th row is placed at j-th column. */
-    std::vector<unsigned int> mBoard;
+    bool PlaceQueensBacktracking(const int row);
 
     /**
      * Check if a queen placed at [row, column] would be killed or not
      * with the current board. The current board shouldn't have any queen
      * placed after row [row],
      *
-     * @param row of the current placed queen-
+     * @param row of the current placed queen.
      * @param column of the current placed queen.
      * @return true if the queen can be placed, false if not.
      */
-    bool CanPlace(const unsigned int row, const unsigned int column) const;
+    bool CanPlace(const int row, const int column) const;
 };
 
 #endif // nQUEENS_NQUEENS_HPP
