@@ -19,11 +19,11 @@ int main()
     /* 8 queens. Check that the amount of successes tends to p. */
     NQueens board8(8);
     int n = 0;
-    for (int i = 0; i < 20000; i++) {
+    for (int i = 0; i < 200000; i++) {
         n += board8.PlaceQueensLasVegas(8);
     }
     // Should be around p = 0’1293.
-    cout << "8 Queens probability of success with k=8: " << n / 20000.0 << "%" << endl << endl;
+    cout << "8 Queens probability of success with k=8: " << n / 200000.0 << "%" << endl << endl;
 
     /* 39 Queens. Compare k values. */
     NQueens board39(39);
@@ -45,6 +45,6 @@ int main()
 
     /* 1000 Queens. Find a solution. */
     NQueens board1000(1000);
-    board1000.RepPlaceQueensLasVegas(900);
+    board1000.RepPlaceQueensLasVegas(950);
     board1000.PrintBoard();
 }
