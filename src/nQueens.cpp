@@ -5,36 +5,40 @@
 ** Author: Santiago Gil Begué, NIA: 683482
 ** -------------------------------------------------------------------------*/
 
+#include <iostream>
 #include <list>
 #include <math.h>
 #include "nQueens.hpp"
 #include <stdlib.h>
-#include <time.h>
-#include <iostream>
+
+using namespace std;
 
 NQueens::NQueens(const int n)
 {
     mBoard.resize(n);
 }
 
+void NQueens::RepPlaceQueensLasVegas(const int k)
+{
+    while (!PlaceQueensLasVegas(k));
+}
+
 bool NQueens::PlaceQueensLasVegas(const int k)
 {
     // Possible free squares in a row.
-    std::list<int> possibleSquares;
+    list<int> possibleSquares;
     for (int i = 0; i < mBoard.size(); i++) {
         possibleSquares.push_back(i);
     }
-    // Initialize random seed.
-    srand(time(NULL));
     // Place the first k queens randomly.
     for (int i = 0; i < k; i++) {
         // Local copy of the possible squares in a row.
-        std::list<int> currentPossibleSquares = possibleSquares;
+        list<int> currentPossibleSquares = possibleSquares;
         /* Place the square in the first possible square found, or return
          * false if there aren't any possible square in the current board. */
         int randomColumn;
         do {
-            randomColumn = *std::next(currentPossibleSquares.begin(), rand() % mBoard.size());
+            randomColumn = *next(currentPossibleSquares.begin(), rand() % mBoard.size());
             // There is no square to place the i-th queen.
             if (currentPossibleSquares.empty()) {
                 return false;
@@ -94,7 +98,17 @@ bool NQueens::CanPlace(const int row, const int column) const
     return true;
 }
 
-std::vector<int> NQueens::GetBoard() const
+void NQueens::PrintBoard() const
 {
-    return mBoard;
+    cout << mBoard.size() << " Queens Solution:" << endl;
+    for (int i = 0; i < mBoard.size(); i++) {
+        for (int j = 0; j < mBoard[i]; j++) {
+            cout << "x";
+        }
+        cout << "O";
+        for (int j = mBoard[i] + 1; j < mBoard.size(); j++) {
+            cout << "x";
+        }
+        cout << endl;
+    }
 }

@@ -23,6 +23,18 @@ public:
     NQueens(const int n);
 
     /**
+     * Solves the N Queens board by Las Vegas algorithm, placing ç
+     * the first k queens randomly, and then doing a backtracking.
+     * For this, k must be less or equals than n (size of the board).
+     * Repeat the algorithm until a solution is found.
+     *
+     * Note: There could be no solution, for example with 2 Queens.
+     *
+     * @param k number of the first queens to place randomly.
+     */
+    void RepPlaceQueensLasVegas(const int k);
+
+    /**
      * Tries to solve the N Queens board by Las Vegas algorithm,
      * placing the first k queens randomly, and then
      * doing a backtracking. For this, k must be less or equals
@@ -35,11 +47,9 @@ public:
     bool PlaceQueensLasVegas(const int k);
 
     /**
-     * Returns the board.
-     *
-     * @return the board.
+     * Print the board.
      */
-    std::vector<int> GetBoard() const;
+    void PrintBoard() const;
 
 private:
 
