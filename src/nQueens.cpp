@@ -38,14 +38,13 @@ bool NQueens::PlaceQueensLasVegas(const int k)
          * false if there aren't any possible square in the current board. */
         int randomColumn;
         do {
-            randomColumn = *next(currentPossibleSquares.begin(), rand() % mBoard.size());
             // There is no square to place the i-th queen.
             if (currentPossibleSquares.empty()) {
                 return false;
-            // Remove the current square in order to don't get it in another iteration.
-            } else {
-                currentPossibleSquares.remove(randomColumn);
             }
+            randomColumn = *next(currentPossibleSquares.begin(), rand() % currentPossibleSquares.size());
+            // Remove the current square in order to don't get it in another iteration.
+            currentPossibleSquares.remove(randomColumn);
         }
         while (!CanPlace(i, randomColumn));
         // Place the i-th queen at this column.
